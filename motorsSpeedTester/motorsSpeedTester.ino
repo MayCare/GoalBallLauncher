@@ -17,6 +17,7 @@ void setup() {
   Serial.println("input i.e. - L4");
 
   setPwmFrequency(PIN_PWM_R_MOTOR, 1);
+  setPwmFrequency(PIN_PWM_L_MOTOR, 1);
 }
 
 
