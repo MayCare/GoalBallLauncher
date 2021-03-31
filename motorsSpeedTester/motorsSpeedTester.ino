@@ -18,6 +18,9 @@ void setup() {
 
   setPwmFrequency(PIN_PWM_R_MOTOR, 1);
   setPwmFrequency(PIN_PWM_L_MOTOR, 1);
+
+  setPWM(PIN_PWM_R_MOTOR, 0);
+  setPWM(PIN_PWM_L_MOTOR, 0);
 }
 
 
@@ -109,6 +112,13 @@ bool getInput() {
 
 void setPWM(int ledPin, int speedV) {
   int pwmVal = map(speedV, SPEED_V_MIN_VAL, SPEED_V_MAX_VAL, 0, PWM_MAX_VAL);
+  if (speedV <= 0) {
+    pwmVal = 0;
+  }
+  if (pwmVal >= PWM_MAX_VAL) {
+    pwmVal = PWM_MAX_VAL;
+  }
+  
   Serial.println(pwmVal);
   analogWrite(ledPin, pwmVal);
   delay(2000);
